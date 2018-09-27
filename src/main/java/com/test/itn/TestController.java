@@ -5,25 +5,37 @@
  */
 package com.test.itn;
 
-import org.springframework.core.SpringVersion;
+import com.test.model.Itntest;
+import com.test.repository.ItnRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
  
 @RestController
 @RequestMapping(value = "/hi")
 public class TestController {
-    @RequestMapping(value = "/hellow")
-    public String hellow(){
-        System.out.println("version: " + SpringVersion.getVersion());
-        return "hellow";
+    
+    @Autowired
+    ItnRepository itnrepo;
+    @RequestMapping(value = "/find")
+    public Itntest hellow(){
+      return (Itntest) itnrepo.findAll();
        
     }
     
-    @RequestMapping(value = "/index")
-    public ModelAndView index(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("index");
-        return mv;
+     @RequestMapping(value = "/save")
+    public Itntest find(){
+   Itntest itntest = new Itntest();
+   itntest.setFirstName("sumit");
+   itntest.setLastName("shrestha");
+   itntest.setEmail("d@gmail.com");
+         System.out.println("Your name is:"+itntest.getFirstName());
+   
+   
+  return  itnrepo.save(itntest);
+   
+       
     }
+    
+
 }
