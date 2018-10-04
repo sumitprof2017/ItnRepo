@@ -9,7 +9,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("com.test.itn")
-@EntityScan("com.test.model")
+//@EntityScan("com.test.model")
+@EntityScan(basePackages ={"com.test.model","com.rediff.model","com"})
 @EnableJpaRepositories("com.test.repository")
 @SpringBootApplication
 public class LetspractiseitnApplication extends SpringBootServletInitializer {

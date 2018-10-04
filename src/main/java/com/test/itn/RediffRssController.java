@@ -5,62 +5,55 @@
 // */
 //package com.test.itn;
 //
-//
 //import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
 //import com.google.gson.JsonObject;
 //import com.google.gson.JsonParser;
 //import com.test.model.Example;
-//import com.test.model.Item;
 //import com.test.model.News;
 //import com.test.model.NewsResponse;
-//import com.test.model.Rss;
-//import com.test.model.RssNews;
 //import java.io.BufferedReader;
-//import java.io.IOException;
 //import java.io.InputStreamReader;
-//import java.io.StringReader;
-//
+//import java.net.HttpURLConnection;
 //import java.net.URL;
-//import java.nio.charset.Charset;
 //import java.util.ArrayList;
 //import java.util.List;
-////import java.util.Date;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 //import javax.net.ssl.HttpsURLConnection;
-//import javax.xml.parsers.ParserConfigurationException;
-//import org.json.JSONArray;
 //import org.json.JSONException;
 //import org.json.JSONObject;
 //import org.json.XML;
+//import org.json.simple.parser.JSONParser;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RestController;
-//import org.xml.sax.SAXException;
-//
-//
 //
 //@RestController
-//@RequestMapping(value = "/news")
-//public class NewController {
-//     
-//    @RequestMapping(value = "/tester")
-//    public NewsResponse news() throws IOException, ParserConfigurationException, SAXException{
-//         NewsResponse newsResponse = new NewsResponse();
-//        try {
-//            String newsApi = "https://setopati.com/feed";
+//@RequestMapping(value = "/rediff")
+//public class RediffRssController {
+//     @RequestMapping(value = "/tester")
+//     public NewsResponse NepalJapan(){
+//          NewsResponse newsResponse = new NewsResponse();
+//         try {
+////             System.setProperty("http.proxyHost", "localhost:");
+////              System.setProperty("http.proxyPort", "8084");
+//              String rediffurl = "http://www.rediff.com/rss/inrss.xml";
+//                
+//                URL url = new URL(rediffurl);
 //            
-//            URL url = new URL(newsApi);
-//            
-//            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-//            System.out.println(" url.openConnection()"+conn);
-//            conn.setDoOutput(true);
-//            
+//             
+//               String bbcurl = "http://feeds.bbci.co.uk/news/england/london/rss.xml";
+//               String cnnurl = "http://rss.cnn.com/rss/edition.rss";
+//                String ndtvnewsurl = "http://feeds.feedburner.com/ndtvnews-top-stories";
+//                 String setopatiurl = "https://setopati.com/feed";
+//         
+//           
+//
 //
 //            int responseCode = conn.getResponseCode();
+//            int responseCodeforsetopati = setopaticonn.getResponseCode();
 //            System.out.println("Response Code:"+responseCode);
+//            System.out.println("Response Code for setopati:"+responseCodeforsetopati);
 //             BufferedReader in = new BufferedReader(
-//	 new InputStreamReader(conn.getInputStream(),Charset.forName("UTF-8")));
+//	 new InputStreamReader(conn.getInputStream()));
 //	 String inputLine = in.readLine();
 //            System.out.println("INputLine"+inputLine);
 //	 StringBuffer response = new StringBuffer();
@@ -70,9 +63,24 @@
 ////             System.out.println("response appended");
 //	 }
 //	in.close();
-//            System.out.println("response is:"+response);
-//            String TEST_XML_STRING = response.toString();
-//             try {
+//          BufferedReader insetopati = new BufferedReader(
+//	 new InputStreamReader(setopaticonn.getInputStream()));
+//	 String inputLines = insetopati.readLine();
+//            System.out.println("INputLine"+inputLine);
+//	 StringBuffer responsesetopati = new StringBuffer();
+////            System.out.println("hellow response");
+//	 while ((inputLine = insetopati.readLine()) != null) {
+//	  responsesetopati.append(inputLines);
+////             System.out.println("response appended");
+//	 }
+//	insetopati.close();
+//            System.out.println("response  string is:"+response);
+//             System.out.println("response setopati:"+responsesetopati);
+//             System.out.println("response is string:"+response.toString());
+//     
+//             String TEST_XML_STRING = response.toString();
+//         
+//                  try {
 //            JSONObject xmlJSONObj = XML.toJSONObject(TEST_XML_STRING);
 //              System.out.println("rss to json:"+xmlJSONObj);
 //                 String jsonPrettyPrintString = xmlJSONObj.toString(4);
@@ -102,7 +110,7 @@
 ////             news.setImage(o.getRss().getChannel().getItem().get(0).ge());
 //             news.setLink(o.getRss().getChannel().getItem().get(i).getLink());
 //             news.setPublished_date(o.getRss().getChannel().getItem().get(i).getPubDate());
-////             news.setSource(o.getRss().getChannel().getItem().get(0).());
+////             news.setSource(o.getRss().getChannel().getItem().get(i).ge);
 //             news.setTitle(o.getRss().getChannel().getItem().get(i).getTitle());
 //
 //         newsList.add(news);}
@@ -120,11 +128,10 @@
 //        } catch (JSONException je) {
 //            System.out.println(je.toString());
 //        }
-//
-//        }
-//            catch (IOException ex) {
-//            Logger.getLogger(NewController.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("try not working");
-//        }
-//    return newsResponse;}
+//           
+////             System.out.println(xmlJSONObj);
+//             
+//         } catch (Exception e) {
+//         }
+//     return newsResponse;}
 //}

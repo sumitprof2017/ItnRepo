@@ -5,7 +5,6 @@
  */
 package com.test.model;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,27 +17,13 @@ import org.hibernate.annotations.DynamicInsert;
 @Data
 @Entity
 @DynamicInsert
-@Table(name = "news")
-public class News implements Serializable {
+@Table(name = "source")
 
-    @Id
+public class Source {
+     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "news_id")
-    private Integer News_id;
-    @Column(name = "title")
-    String title;
-    @Column(name = "link")
-    String link;
-    @Column(name = "category")
-    String category;
-    @Column(name = "published_date")
-    String published_date;
-    @Column(name = "guid")
-    String guid;
-    @Column(name = "image")
-    String image;
-    @Column(name = "description")
-    String description;
-    @Column(name = "source")
-    String source;
+    @Column(name = "source_id")
+      private Integer id;
+    @Column(name = "name")
+    String name;
 }
